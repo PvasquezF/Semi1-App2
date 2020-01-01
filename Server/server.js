@@ -12,7 +12,7 @@ var packageDefinition = protoLoader.loadSync(
 var hello_proto = grpc.loadPackageDefinition(packageDefinition).helloworld;
 
 function sayHello(call, callback) {
-    callback(null, { message: 'Hola mundo' });
+    callback(null, { message: call.request.name });
 }
 
 function main() {

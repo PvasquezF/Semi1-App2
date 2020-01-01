@@ -19,7 +19,14 @@ function main() {
     var user;
     app.get('/', function(req, res) {
         user = req.params.id;
-        client.sayHello({}, function(err, response) {
+        client.sayHello({ name: 'Hola Mundo' }, function(err, response) {
+            console.log(response.message);
+            res.send(response.message);
+        });
+    });
+    app.get('/:valor', function(req, res) {
+        user = req.params.valor;
+        client.sayHello({ name: user }, function(err, response) {
             console.log(response.message);
             res.send(response.message);
         });
