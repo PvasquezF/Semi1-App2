@@ -10,9 +10,18 @@ var packageDefinition = protoLoader.loadSync(
         oneofs: true
     });
 var hello_proto = grpc.loadPackageDefinition(packageDefinition).helloworld;
+var client2 = new hello_proto.Greeter('localhost:50052', grpc.credentials.createInsecure());
 
 function sayHello(call, callback) {
-    callback(null, { message: call.request.name });
+    client2.sayHello({ name: 'Adios Mundo' }, function(err, response) {
+        console.log(response.message1);
+        var res = {
+            message1: call.request.name,
+            message2: response.message1
+        }
+        console.log(res)
+        callback(null, res);
+    });
 }
 
 function main() {
