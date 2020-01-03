@@ -10,7 +10,7 @@ var packageDefinition = protoLoader.loadSync(
         oneofs: true
     });
 var hello_proto = grpc.loadPackageDefinition(packageDefinition).helloworld;
-var client2 = new hello_proto.Greeter('34.68.244.41:50052', grpc.credentials.createInsecure());
+var client2 = new hello_proto.Greeter('localhost:50052', grpc.credentials.createInsecure());
 
 function sayHello(call, callback) {
     client2.sayHello({ name: 'Adios Mundo' }, function(err, response) {
